@@ -20,17 +20,17 @@ Ext.define('Traccar.view.SettingsMenuController', {
     alias: 'controller.settings',
 
     requires: [
-        'Traccar.view.LoginController',
-        'Traccar.view.UserDialog',
-        'Traccar.view.ServerDialog',
-        'Traccar.view.Users',
-        'Traccar.view.Groups',
-        'Traccar.view.Geofences',
+        'Traccar.view.dialog.LoginController',
+        'Traccar.view.dialog.User',
+        'Traccar.view.dialog.Server',
+        'Traccar.view.edit.Users',
+        'Traccar.view.edit.Groups',
+        'Traccar.view.edit.Geofences',
         'Traccar.view.Notifications',
-        'Traccar.view.AttributeAliases',
+        'Traccar.view.edit.AttributeAliases',
         'Traccar.view.Statistics',
-        'Traccar.view.DeviceDistanceDialog',
-        'Traccar.view.Calendars',
+        'Traccar.view.dialog.DeviceDistance',
+        'Traccar.view.edit.Calendars',
         'Traccar.view.BaseWindow'
     ],
 
@@ -61,9 +61,11 @@ Ext.define('Traccar.view.SettingsMenuController', {
     },
 
     onUserClick: function () {
-        var dialog = Ext.create('Traccar.view.UserDialog');
+        var dialog = Ext.create('Traccar.view.dialog.User', {
+            selfEdit: true
+        });
         dialog.down('form').loadRecord(Traccar.app.getUser());
-        dialog.lookupReference('testMailButton').setHidden(false);
+        dialog.lookupReference('testNotificationButton').setHidden(false);
         dialog.show();
     },
 
@@ -88,7 +90,7 @@ Ext.define('Traccar.view.SettingsMenuController', {
     },
 
     onServerClick: function () {
-        var dialog = Ext.create('Traccar.view.ServerDialog');
+        var dialog = Ext.create('Traccar.view.dialog.Server');
         dialog.down('form').loadRecord(Traccar.app.getServer());
         dialog.show();
     },
@@ -136,7 +138,7 @@ Ext.define('Traccar.view.SettingsMenuController', {
     },
 
     onDeviceDistanceClick: function () {
-        var dialog = Ext.create('Traccar.view.DeviceDistanceDialog');
+        var dialog = Ext.create('Traccar.view.dialog.DeviceDistance');
         dialog.show();
     },
 
@@ -151,6 +153,6 @@ Ext.define('Traccar.view.SettingsMenuController', {
     },
 
     onLogoutClick: function () {
-        Ext.create('Traccar.view.LoginController').logout();
+        Ext.create('Traccar.view.dialog.LoginController').logout();
     }
 });

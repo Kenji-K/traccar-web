@@ -24,7 +24,7 @@ Ext.define('Traccar.view.StateController', {
        'Traccar.model.Attribute',
        'Traccar.model.AttributeAlias',
        'Traccar.model.Position',
-       'Traccar.view.AttributeAliasDialog'
+       'Traccar.view.dialog.AttributeAlias'
 
     ],
 
@@ -167,8 +167,10 @@ Ext.define('Traccar.view.StateController', {
     },
 
     clearReport: function (store) {
-        this.position = null;
-        Ext.getStore('Attributes').removeAll();
+        if (!this.deviceId) {
+            this.position = null;
+            Ext.getStore('Attributes').removeAll();
+        }
     },
 
     onSelectionChange: function (selected, records) {
@@ -190,7 +192,7 @@ Ext.define('Traccar.view.StateController', {
             });
             attributeAlias.store = this.aliasesStore;
         }
-        dialog = Ext.create('Traccar.view.AttributeAliasDialog');
+        dialog = Ext.create('Traccar.view.dialog.AttributeAlias');
         dialog.down('form').loadRecord(attributeAlias);
         dialog.show();
     },

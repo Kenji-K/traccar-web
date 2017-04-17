@@ -74,7 +74,10 @@ Ext.define('Traccar.Application', {
         'Statistics',
         'DeviceImages',
         'Calendars',
-        'AllCalendars'
+        'AllCalendars',
+        'AllTimezones',
+        'VisibleDevices',
+        'DeviceStatuses'
     ],
 
     controllers: [
