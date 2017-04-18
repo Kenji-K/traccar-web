@@ -48,8 +48,15 @@ Ext.define('Traccar.view.Login', {
             height: 48,
             style: {
                 display: 'block',
-                margin: '10px auto 25px'
+                margin: '10px auto 0px'
             }
+        }, {
+            xtype: 'box',
+            autoEl: {
+                tag: 'div',
+                cls: 'subtitle',
+                html: '<h4 style="margin:0 50px 25px 50px; text-align: right; font-size:120%;">Track</h4>'
+            },
         }, {
             xtype: 'combobox',
             name: 'language',
